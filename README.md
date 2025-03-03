@@ -1,5 +1,9 @@
 # GNN Powergrid
-This repository implements Graph Neural Networks for Power Flow (PF) simulation. This implementation may inspire future works whcih are based mainly on control (RL) problems.
+
+## Short description of the algorithm
+This repository implements Graph Neural Networks for Power Flow (PF) simulation. This implementation will guide future works considering the control (RL based) problem in which the agent's policy could be enhanced using physics informed neural networks.
+
+In this implementation the inputs to the GNN are the injections ($p^{load}$, $p^{prod}$) at nodes and admittances at the power lines ($y_ij$) connecting a pair of nodes. Based on these inputs, the GNN outputs the voltage angle $\theta$ at the nodes (substations). Based on these predictions, other grid variables like active power could be computed easily as a post-processing step.  
 
 <div align="center">
   <img src="./imgs/gnn_eq_powergrid.png">
@@ -11,11 +15,42 @@ This repository implements Graph Neural Networks for Power Flow (PF) simulation.
 
 <!-- ![eq](./imgs/gnn_eq_powergrid.png)
 ![scheme](./imgs/gnn_scheme_powergrid.png) -->
-## Getting started
 
-See the getting started notebooks at the root of this repository for the examples on how to use this package
+#### Overview of code structure
+:open_file_folder: **graph-neural-solver**
 
-## Installation
+├── :open_file_folder: configs
+
+│   └── ...
+
+├── :open_file_folder: getting_started
+
+│   └── 0_generate_data.ipynb
+
+│   └── 1_example_gnn_without_nn.ipynb
+
+│   └── 2_gnn_powergrid.ipynb
+
+├── :open_file_folder: gnn_powergrid
+
+│   └── dataset
+
+│     └── ...
+
+│   └── evaluation
+
+│     └── ...
+
+│   └── gnn
+
+│     └── ...
+
+├── setup.py
+
+
+The folder *configs* includes all the required configurations for data generation and hyperparameters for constructing GNN based solvers, the folder *getting_started* contains a set of jupyter notebooks guiding the user to how generate, train and evaluate the GNN based implementations, the folder *gnn_powergrid* is the python package including different modules which are `dataset`, `evaluation` and `gnn`. The `setup.py` allows the installation of the package using the required dependencies.
+
+## Installation guide
 To be able to run the experiments in this repository, the following steps show how to install this package and its dependencies from source.
 
 ### Requirements
@@ -51,3 +86,42 @@ cd ..
 ```commandline
 pip3 install -e .[recommended]
 ```
+
+## Input
+The set of inputs for the generation of datasets could be found in *configs* folder. There are two configuration files for two different power grid environments presenting each a different grid size. `l2rpn_case14_sandbox` is the toy example with a grid including 14 nodes and 20 power lines. `l2rpn_neurips_2020_track1_small` includes a more complex environment with 38 nodes. The user could use one of the sections in these configuration files when generating and importing datasets. 
+
+Once the environment is selected, you should change the number of samples per dataset before the `main` function which are set only for illustration purpose as: 
+
+```python
+NB_SAMPLE_TRAIN = 1e2
+NB_SAMPLE_VAL = 1e2
+NB_SAMPLE_TEST = 1e2
+NB_SAMPLE_OOD = 1e2
+```
+
+You could also change the set of hyperparameters of the GNN by modifying the `gnn.ini` configuration file in *configs* folder or by setting them directly as the arguments to the `GnnSimulator` class instantiation. 
+
+```config
+env_name="l2rpn_case14_sandbox"
+name = "torch_gnn"
+ref_node = 0
+num_gnn_layers = 10
+latent_dimension = 20
+hidden_layers = 3
+input_dim=2
+output_dim=1
+train_batch_size = 128
+eval_batch_size = 128
+device="cpu"
+optimizer = {"name": "adam",
+             "params": {"lr": 3e-4}}
+epochs = 10
+train_with_discount=False
+save_freq = False
+ckpt_freq = 50
+```
+
+## Output
+As the output of the script `main.py`, two files are created:
+- *logs.log* file which includes all the logs of the LIPS framework alongside the outputs
+- *results.json* a json file including the metrics computed on the prediction of GNN.
