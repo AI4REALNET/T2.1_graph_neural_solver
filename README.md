@@ -87,7 +87,10 @@ cd ..
 pip3 install -e .[recommended]
 ```
 
-## Input
+## Reproducibility
+The results presented in the slides could be reproduced by executing the `main.py` script.
+
+### Input
 The set of inputs for the generation of datasets could be found in *configs* folder. There are two configuration files for two different power grid environments presenting each a different grid size. `l2rpn_case14_sandbox` is the toy example with a grid including 14 nodes and 20 power lines. `l2rpn_neurips_2020_track1_small` includes a more complex environment with 38 nodes. The user could use one of the sections in these configuration files when generating and importing datasets. 
 
 Once the environment is selected, you should change the number of samples per dataset before the `main` function which are set only for illustration purpose as: 
@@ -121,7 +124,7 @@ save_freq = False
 ckpt_freq = 50
 ```
 
-## Output
+### Output
 As the output of the script `main.py`, two files are created:
 - *logs.log* file which includes all the logs of the LIPS framework alongside the outputs
 - *results.json* a json file including the metrics computed on the prediction of GNN.
