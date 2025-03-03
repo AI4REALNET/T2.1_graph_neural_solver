@@ -16,7 +16,7 @@ In this implementation the inputs to the GNN are the injections ($p^{load}$, $p^
 <!-- ![eq](./imgs/gnn_eq_powergrid.png)
 ![scheme](./imgs/gnn_scheme_powergrid.png) -->
 
-#### Overview of code structure
+## Overview of code structure
 :open_file_folder: **graph-neural-solver**
 
 ├── :open_file_folder: configs
