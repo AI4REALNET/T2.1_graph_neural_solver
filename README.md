@@ -33,15 +33,15 @@ In this implementation the inputs to the GNN are the injections ($p^{load}$, $p^
 
 ├── :open_file_folder: gnn_powergrid
 
-│   └── :open_file_folder:dataset
+│   └── :open_file_folder: dataset
 
 │     &ensp;&ensp;&ensp;&ensp;└── ...
 
-│   └── :open_file_folder:evaluation
+│   └── :open_file_folder: evaluation
 
 │     &ensp;&ensp;&ensp;&ensp;└── ...
 
-│   └── :open_file_folder:gnn
+│   └── :open_file_folder: gnn
 
 │     &ensp;&ensp;&ensp;&ensp;└── ...
 
