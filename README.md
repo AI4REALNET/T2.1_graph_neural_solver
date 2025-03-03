@@ -3,7 +3,7 @@
 ## Short description of the algorithm
 This repository implements Graph Neural Networks for Power Flow (PF) simulation. This implementation will guide future works considering the control (RL based) problem in which the agent's policy could be enhanced using physics informed neural networks.
 
-In this implementation the inputs to the GNN are the injections ($p^{load}$, $p^{prod}$) at nodes and admittances at the power lines ($y_ij$) connecting a pair of nodes. Based on these inputs, the GNN outputs the voltage angle $\theta$ at the nodes (substations). Based on these predictions, other grid variables like active power could be computed easily as a post-processing step.  
+In this implementation the inputs to the GNN are the injections ($p^{load}$, $p^{prod}$) at nodes and admittances at the power lines ($y_{ij}$) connecting a pair of nodes. Based on these inputs, the GNN outputs the voltage angle $\theta$ at the nodes (substations). Based on these predictions, other grid variables like active power could be computed easily as a post-processing step.  
 
 <div align="center">
   <img src="./imgs/gnn_eq_powergrid.png">
@@ -25,25 +25,25 @@ In this implementation the inputs to the GNN are the injections ($p^{load}$, $p^
 
 ├── :open_file_folder: getting_started
 
-│   └── 0_generate_data.ipynb
+│   &ensp;&ensp;&ensp;&ensp;└── 0_generate_data.ipynb
 
-│   └── 1_example_gnn_without_nn.ipynb
+│   &ensp;&ensp;&ensp;&ensp;└── 1_example_gnn_without_nn.ipynb
 
-│   └── 2_gnn_powergrid.ipynb
+│   &ensp;&ensp;&ensp;&ensp;└── 2_gnn_powergrid.ipynb
 
 ├── :open_file_folder: gnn_powergrid
 
-│   └── dataset
+│   └── :open_file_folder:dataset
 
-│     └── ...
+│     &ensp;&ensp;&ensp;&ensp;└── ...
 
-│   └── evaluation
+│   └── :open_file_folder:evaluation
 
-│     └── ...
+│     &ensp;&ensp;&ensp;&ensp;└── ...
 
-│   └── gnn
+│   └── :open_file_folder:gnn
 
-│     └── ...
+│     &ensp;&ensp;&ensp;&ensp;└── ...
 
 ├── setup.py
 
