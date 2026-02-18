@@ -3,7 +3,7 @@ import pathlib
 from lips.benchmark.powergridBenchmark import PowerGridBenchmark
 from gnn_powergrid.gnn.gnn_simulator import GnnSimulator
 from gnn_powergrid.gnn.models.gnn import GPGmodel
-from gnn_powergrid import NpEncoder
+from gnn_powergrid.utils import NpEncoder
 
 env_name = "l2rpn_case14_sandbox"
 
@@ -21,7 +21,7 @@ NB_SAMPLE_VAL = 1e2
 NB_SAMPLE_TEST = 1e2
 NB_SAMPLE_OOD = 1e2
 
-EPOCHS = 2
+EPOCHS = 500
 
 if __name__ == "__main__":
 

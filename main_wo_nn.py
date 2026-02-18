@@ -7,7 +7,7 @@ from lips.benchmark.powergridBenchmark import PowerGridBenchmark
 from gnn_powergrid.dataset import prepare_dataset
 from gnn_powergrid.gnn.models.gnn_wo_nn import GPGmodel_without_NN
 from gnn_powergrid.evaluation.evaluate_gnn import evaluate_gnn
-from gnn_powergrid import NpEncoder
+from gnn_powergrid.utils import NpEncoder
 
 env_name = "l2rpn_case14_sandbox"
 

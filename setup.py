@@ -35,7 +35,8 @@ pkgs = {
             "tensorflow==2.8.1",
             "torch==2.0.1",
             "imageio==2.34.0",
-            "plotly==5.20.0"
+            "plotly==5.20.0",
+            "torch-geometric"
         ],
     }
 }
